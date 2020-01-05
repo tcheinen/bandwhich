@@ -4,7 +4,7 @@ use ::std::net::Ipv4Addr;
 
 use ::std::net::SocketAddr;
 
-#[derive(PartialEq, Hash, Eq, Clone, PartialOrd, Ord, Debug)]
+#[derive(PartialEq, Hash, Eq, Clone, PartialOrd, Ord, Debug, Copy)]
 pub enum Protocol {
     Tcp,
     Udp,
@@ -29,13 +29,13 @@ impl fmt::Display for Protocol {
     }
 }
 
-#[derive(Clone, Ord, PartialOrd, PartialEq, Eq, Hash)]
+#[derive(Clone, Ord, PartialOrd, PartialEq, Eq, Hash, Copy)]
 pub struct Socket {
     pub ip: Ipv4Addr,
     pub port: u16,
 }
 
-#[derive(PartialEq, Hash, Eq, Clone, PartialOrd, Ord)]
+#[derive(PartialEq, Hash, Eq, Clone, PartialOrd, Ord, Copy)]
 pub struct Connection {
     pub remote_socket: Socket,
     pub protocol: Protocol,
