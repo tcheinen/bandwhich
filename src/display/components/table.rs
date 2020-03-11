@@ -42,6 +42,7 @@ fn sort_by_bandwidth<'a, T>(
 pub enum ColumnCount {
     Two,
     Three,
+    Four,
 }
 
 impl ColumnCount {
@@ -49,6 +50,7 @@ impl ColumnCount {
         match &self {
             ColumnCount::Two => 2,
             ColumnCount::Three => 3,
+            ColumnCount::Four => 4,
         }
     }
 }
@@ -265,6 +267,12 @@ impl<'a> Table<'a> {
                 self.column_names[1],
                 self.column_names[2],
             ],
+            ColumnCount::Four => vec![
+                self.column_names[0],
+                self.column_names[1],
+                self.column_names[2],
+                self.column_names[3],
+            ],
         };
 
         let rows = self.rows.iter().map(|row| match column_count {
@@ -276,6 +284,12 @@ impl<'a> Table<'a> {
                 truncate_middle(&row[0], widths[0]),
                 truncate_middle(&row[1], widths[1]),
                 truncate_middle(&row[2], widths[2]),
+            ],
+            ColumnCount::Four => vec![
+                truncate_middle(&row[0], widths[0]),
+                truncate_middle(&row[1], widths[1]),
+                truncate_middle(&row[2], widths[2]),
+                truncate_middle(&row[3], widths[3]),
             ],
         });
 
